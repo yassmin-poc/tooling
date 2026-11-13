@@ -1,0 +1,8 @@
+{
+  "products": ["product-a", "product-b"],
+  "baseline": {
+    "has_wiki": false,
+    "delete_branch_on_merge": true,
+    "allow_merge_commit": false
+  }
+}

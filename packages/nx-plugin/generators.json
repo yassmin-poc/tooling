@@ -1,0 +1,10 @@
+{
+  "generators": {
+    "preset": {
+      "factory": "./dist/generators/preset/preset",
+      "schema": "./dist/generators/preset/schema.json",
+      "description": "preset generator",
+      "x-use-standalone-layout": true
+    }
+  }
+}

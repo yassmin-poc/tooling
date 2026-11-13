@@ -4,17 +4,39 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@nx/eslint": "24.0.6",
+    "@nx/eslint-plugin": "24.0.6",
+    "@nx/jest": "24.0.6",
     "@nx/js": "24.0.6",
+    "@nx/plugin": "^24.0.6",
+    "@swc-node/register": "~1.11.1",
+    "@swc/cli": "~0.8.1",
+    "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
+    "@swc/jest": "~0.2.38",
+    "@types/jest": "~30.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
+    "jsonc-eslint-parser": "^2.1.0",
     "nx": "24.0.6",
     "prettier": "~3.6.2",
+    "ts-jest": "^29.4.7",
+    "ts-node": "10.9.1",
     "tslib": "^2.3.0",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.58.0"
   },
   "packageManager": "npm@11.12.1",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@nx/devkit": "24.0.6"
+  }
 }

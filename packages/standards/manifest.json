@@ -1,0 +1,118 @@
+{
+  "version": "0.1.0",
+  "items": [
+    {
+      "id": "base.editorconfig",
+      "type": "A",
+      "level": "locked",
+      "path": ".editorconfig",
+      "check": { "kind": "sameAsTemplate", "template": "editorconfig" }
+    },
+    {
+      "id": "base.security",
+      "type": "A",
+      "level": "minimum",
+      "path": "SECURITY.md",
+      "check": { "kind": "exists" }
+    },
+    {
+      "id": "config.commitlint",
+      "type": "B",
+      "level": "minimum",
+      "path": "commitlint.config.mjs",
+      "check": {
+        "kind": "contains",
+        "patterns": ["@yassmin-poc/commitlint-config"]
+      }
+    },
+    {
+      "id": "config.commitlint-locked-rules",
+      "type": "B",
+      "level": "locked",
+      "path": "commitlint.config.mjs",
+      "check": {
+        "kind": "notContains",
+        "patterns": ["'type-enum'", "\"type-enum\""]
+      }
+    },
+    {
+      "id": "ci.base",
+      "type": "C",
+      "level": "locked",
+      "path": ".github/workflows/ci.yml",
+      "check": {
+        "kind": "pinnedToRelease",
+        "describe": "ci-base.yml",
+        "pattern": "yassmin-poc/tooling/\\.github/workflows/ci-base\\.yml@([0-9a-f]{40})",
+        "repoUrl": "https://github.com/yassmin-poc/tooling"
+      }
+    },
+    {
+      "id": "scripts.no-copies",
+      "type": "D",
+      "level": "locked",
+      "path": "scripts/hello.mjs",
+      "check": {
+        "kind": "absent",
+        "why": "run the shared script from @yassmin-poc/standards"
+      }
+    },
+    {
+      "id": "claude.plugin",
+      "type": "E",
+      "level": "minimum",
+      "path": ".claude/settings.json",
+      "check": {
+        "kind": "jsonEquals",
+        "key": "enabledPlugins.poc-tools@yassmin-poc-tools",
+        "value": true
+      }
+    },
+    {
+      "id": "claude.hooks-on",
+      "type": "F",
+      "level": "locked",
+      "exceptionAllowed": false,
+      "path": ".claude/settings.json",
+      "check": { "kind": "jsonNotTrue", "key": "disableAllHooks" }
+    },
+    {
+      "id": "claude.deny-list",
+      "type": "G",
+      "level": "minimum",
+      "path": ".claude/settings.json",
+      "check": {
+        "kind": "arrayIncludes",
+        "key": "permissions.deny",
+        "values": ["Read(./.env)", "Bash(git push --force:*)"]
+      }
+    },
+    {
+      "id": "standards.no-copies",
+      "type": "H",
+      "level": "locked",
+      "path": "docs/standards",
+      "check": {
+        "kind": "absent",
+        "why": "read the standards from node_modules/@yassmin-poc/standards"
+      }
+    },
+    {
+      "id": "versions.minimum",
+      "type": "I",
+      "level": "minimum",
+      "path": "package.json",
+      "check": {
+        "kind": "dependencyAtLeast",
+        "packages": { "@yassmin-poc/commitlint-config": "0.1.0" }
+      }
+    },
+    {
+      "id": "readme",
+      "type": "A",
+      "level": "default",
+      "path": "README.md",
+      "check": { "kind": "exists" }
+    }
+  ]
+}

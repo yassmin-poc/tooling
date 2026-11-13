@@ -1,0 +1,19 @@
+name: audit
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - run: node scripts/audit.mjs > report.md
+      - run:
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Standards audit $(date +%F)"
+          --body-file report.md

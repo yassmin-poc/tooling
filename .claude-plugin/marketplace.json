@@ -1,0 +1,11 @@
+{
+  "name": "yassmin-poc-tools",
+  "owner": { "name": "yassmin-poc" },
+  "plugins": [
+    {
+      "name": "poc-tools",
+      "source": "./plugins/poc-tools",
+      "description": "Shared skill and hook"
+    }
+  ]
+}

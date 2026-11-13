@@ -1,0 +1,11 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  packages: read
+jobs:
+  base:
+    uses: yassmin-poc/tooling/.github/workflows/ci-base.yml@<%= toolingSha %>

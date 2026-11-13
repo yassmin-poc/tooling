@@ -1,0 +1,23 @@
+{
+  "name": "@yassmin-poc/standards",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "standards-check": "bin/standards-check.mjs"
+  },
+  "files": [
+    "bin",
+    "manifest.json",
+    "templates",
+    "docs",
+    "scripts"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yassmin-poc/tooling.git",
+    "directory": "packages/standards"
+  }
+}

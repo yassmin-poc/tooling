@@ -1,0 +1,6 @@
+/.github/ @yassmin-poc/owners
+/.claude/settings.json @yassmin-poc/owners
+/.editorconfig @yassmin-poc/owners
+/.standards/ @yassmin-poc/owners
+/.npmrc @yassmin-poc/owners
+/commitlint.config.mjs @yassmin-poc/owners

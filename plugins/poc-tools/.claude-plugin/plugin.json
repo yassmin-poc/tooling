@@ -1,0 +1,5 @@
+{
+  "name": "poc-tools",
+  "description": "Shared skill and hook for the proof of concept",
+  "author": { "name": "yassmin-poc" }
+}

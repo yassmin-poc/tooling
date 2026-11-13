@@ -1,0 +1,69 @@
+{
+  "name": "@yassmin-poc/nx-plugin",
+  "version": "0.1.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yassmin-poc/tooling.git",
+    "directory": "packages/nx-plugin"
+  },
+  "private": false,
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@tooling/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "packages/nx-plugin/dist",
+          "main": "packages/nx-plugin/src/index.ts",
+          "tsConfig": "packages/nx-plugin/tsconfig.lib.json",
+          "rootDir": "packages/nx-plugin/src",
+          "generatePackageJson": false,
+          "assets": [
+            {
+              "input": "./packages/nx-plugin/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "./packages/nx-plugin/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@nx/devkit": "24.0.6",
+    "tslib": "^2.3.0"
+  },
+  "generators": "./generators.json",
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "generators.json",
+    "migrations.json"
+  ],
+  "nx-migrations": {
+    "migrations": "./migrations.json"
+  }
+}
