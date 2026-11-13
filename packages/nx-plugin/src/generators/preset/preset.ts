@@ -7,7 +7,7 @@ import {
 } from '@nx/devkit';
 import { PresetGeneratorSchema } from './schema';
 
-const TOOLING_SHA = 'REPLACE_IN_STEP_19';
+const TOOLING_SHA = 'feca98ae97ea3353ea6f7b179e71d83fb1566b10';
 
 export async function presetGenerator(
   tree: Tree,
