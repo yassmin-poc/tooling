@@ -1,0 +1,47 @@
+name: plugin-sync
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Plugin tag to roll out, for example v0.2.0
+        required: true
+permissions:
+  contents: read
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment: release
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: [product-a, product-b]
+    steps:
+      - id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ matrix.repo }}
+      - name: Open the pull request
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          REPO: ${{ github.repository_owner }}/${{ matrix.repo }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+          FILE: .claude/settings.json
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Not a release tag: $TAG"; exit 1; }
+          gh api "repos/$REPO/contents/$FILE" --jq .content | base64 -d > old.json
+          sed -E "s/\"ref\": \"v[0-9]+\.[0-9]+\.[0-9]+\"/\"ref\": \"$TAG\"/" old.json > new.json
+          if cmp -s old.json new.json; then echo "$REPO is already on $TAG"; exit 0; fi
+          branch="chore/plugin-$TAG"
+          title="chore: use the $TAG Claude Code plugin"
+          base=$(gh api "repos/$REPO/git/ref/heads/main" --jq .object.sha)
+          gh api "repos/$REPO/git/refs" -f ref="refs/heads/$branch" -f sha="$base"
+          sha=$(gh api "repos/$REPO/contents/$FILE?ref=$branch" --jq .sha)
+          gh api -X PUT "repos/$REPO/contents/$FILE" -f message="$title" \
+            -f content="$(base64 -w0 new.json)" -f sha="$sha" -f branch="$branch"
+          gh pr create -R "$REPO" --base main --head "$branch" --title "$title" \
+            --body "Moves the Claude Code plugin to $TAG of ${{ github.repository }}."
