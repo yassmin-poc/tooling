@@ -3,6 +3,7 @@
   "packages": {
     "packages/commitlint-config": { "component": "commitlint-config" },
     "packages/standards": { "component": "standards" },
-    "packages/nx-plugin": { "component": "nx-plugin" }
+    "packages/nx-plugin": { "component": "nx-plugin" },
+    "plugins/poc-tools": { "component": "poc-tools", "release-type": "simple" }
   }
 }
