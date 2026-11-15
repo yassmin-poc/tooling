@@ -1,11 +1,14 @@
 name: plugin-sync
 on:
-  push:
-    tags: ['v*']
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        required: true
   workflow_dispatch:
     inputs:
       tag:
-        description: Plugin tag to roll out, for example v0.2.0
+        description: Plugin tag to roll out, for example poc-tools-v0.3.0
         required: true
 permissions:
   contents: read
@@ -29,12 +32,12 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           REPO: ${{ github.repository_owner }}/${{ matrix.repo }}
-          TAG: ${{ inputs.tag || github.ref_name }}
+          TAG: ${{ inputs.tag }}
           FILE: .claude/settings.json
         run: |
-          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Not a release tag: $TAG"; exit 1; }
+          [[ "$TAG" =~ ^poc-tools-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Not a plugin tag: $TAG"; exit 1; }
           gh api "repos/$REPO/contents/$FILE" --jq .content | base64 -d > old.json
-          sed -E "s/\"ref\": \"v[0-9]+\.[0-9]+\.[0-9]+\"/\"ref\": \"$TAG\"/" old.json > new.json
+          sed -E "s/\"ref\": \"[^\"]*\"/\"ref\": \"$TAG\"/" old.json > new.json
           if cmp -s old.json new.json; then echo "$REPO is already on $TAG"; exit 0; fi
           branch="chore/plugin-$TAG"
           title="chore: use the $TAG Claude Code plugin"
