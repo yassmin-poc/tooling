@@ -2,5 +2,5 @@
   "packages/commitlint-config": "0.2.0",
   "packages/standards": "0.1.0",
   "packages/nx-plugin": "0.2.0",
-  "plugins/poc-tools": "0.2.0"
+  "plugins/poc-tools": "0.3.0"
 }
