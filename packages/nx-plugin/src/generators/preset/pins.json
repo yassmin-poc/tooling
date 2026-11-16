@@ -1,0 +1,11 @@
+{
+  "packages": {
+    "@yassmin-poc/commitlint-config": "0.2.1",
+    "@yassmin-poc/standards": "0.1.0"
+  },
+  "pluginRef": "poc-tools-v0.3.1",
+  "ciBase": {
+    "tag": "v0.2.0",
+    "sha": "4bbcb384a7eaa78d1fdabc224c709f09931cbabd"
+  }
+}

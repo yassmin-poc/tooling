@@ -13,6 +13,7 @@ jobs:
     outputs:
       plugin-released: ${{ steps.release.outputs['plugins/poc-tools--release_created'] }}
       plugin-tag: ${{ steps.release.outputs['plugins/poc-tools--tag_name'] }}
+      any-released: ${{ steps.release.outputs.releases_created }}
     steps:
       - id: app-token
         uses: actions/create-github-app-token@v3
@@ -54,4 +55,9 @@ jobs:
     uses: ./.github/workflows/plugin-sync.yml
     with:
       tag: ${{ needs.release.outputs.plugin-tag }}
+    secrets: inherit
+  preset-sync:
+    needs: release
+    if: ${{ needs.release.outputs.any-released == 'true' }}
+    uses: ./.github/workflows/preset-sync.yml
     secrets: inherit
