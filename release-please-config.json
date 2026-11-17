@@ -5,11 +5,20 @@
     "packages/standards": { "component": "standards" },
     "packages/nx-plugin": { "component": "nx-plugin" },
     "plugins/poc-tools": { "component": "poc-tools", "release-type": "simple" },
-    ".github/workflows": {
+    ".": {
       "release-type": "simple",
       "include-component-in-tag": false,
       "version-file": "/ci-base/version.txt",
-      "changelog-path": "/ci-base/CHANGELOG.md"
+      "changelog-path": "/ci-base/CHANGELOG.md",
+      "exclude-paths": [
+        "packages",
+        "plugins",
+        "scripts",
+        "audit",
+        ".claude-plugin",
+        ".vscode",
+        "ci-base"
+      ]
     }
   }
 }
