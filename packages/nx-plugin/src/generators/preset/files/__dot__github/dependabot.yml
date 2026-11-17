@@ -4,3 +4,15 @@ updates:
     directory: /
     schedule:
       interval: daily
+    cooldown:
+      exclude:
+        - '@yassmin-poc/commitlint-config'
+        - '@yassmin-poc/standards'
+        - '@yassmin-poc/nx-plugin'
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    cooldown:
+      exclude:
+        - '*'

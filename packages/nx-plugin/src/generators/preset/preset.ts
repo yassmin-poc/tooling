@@ -5,9 +5,15 @@ import {
   addDependenciesToPackageJson,
   joinPathFragments,
 } from '@nx/devkit';
+import { readFileSync } from 'node:fs';
 import { PresetGeneratorSchema } from './schema';
 
-const TOOLING_SHA = 'feca98ae97ea3353ea6f7b179e71d83fb1566b10';
+const readJson = (p: string) =>
+  JSON.parse(readFileSync(joinPathFragments(__dirname, p), 'utf8'));
+// Pins of the other shared parts; preset-sync keeps them current.
+const pins = readJson('pins.json');
+// This package's own version, so the preset never pins an older nx-plugin.
+const selfVersion: string = readJson('../../../package.json').version;
 
 export async function presetGenerator(
   tree: Tree,
@@ -16,16 +22,17 @@ export async function presetGenerator(
   generateFiles(tree, joinPathFragments(__dirname, 'files'), '.', {
     ...options,
     dot: '.',
-    toolingSha: TOOLING_SHA,
+    toolingSha: pins.ciBase.sha,
+    ciBaseTag: pins.ciBase.tag,
+    pluginRef: pins.pluginRef,
   });
   const install = addDependenciesToPackageJson(
     tree,
     {},
     {
       '@commitlint/cli': '21.2.4',
-      '@yassmin-poc/commitlint-config': '0.1.0',
-      '@yassmin-poc/standards': '0.1.0',
-      '@yassmin-poc/nx-plugin': '0.1.0',
+      ...pins.packages,
+      '@yassmin-poc/nx-plugin': selfVersion,
     },
   );
   await formatFiles(tree);
