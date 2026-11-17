@@ -8,7 +8,9 @@
     ".github/workflows": {
       "component": "ci-base",
       "release-type": "simple",
-      "include-component-in-tag": false
+      "include-component-in-tag": false,
+      "version-file": "/ci-base/version.txt",
+      "changelog-path": "/ci-base/CHANGELOG.md"
     }
   }
 }
