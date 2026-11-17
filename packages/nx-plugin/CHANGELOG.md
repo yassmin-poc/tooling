@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/yassmin-poc/tooling/compare/nx-plugin-v0.2.1...nx-plugin-v0.2.2) (2026-11-17)
+
+
+### Bug Fixes
+
+* **nx-plugin:** pin the preset to the latest releases ([#26](https://github.com/yassmin-poc/tooling/issues/26)) ([a09082c](https://github.com/yassmin-poc/tooling/commit/a09082c9abd01f4618cecfafb77b82027abe55a0))
+
 ## [0.2.1](https://github.com/yassmin-poc/tooling/compare/nx-plugin-v0.2.0...nx-plugin-v0.2.1) (2026-11-17)
 
 
