@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/yassmin-poc/tooling/compare/nx-plugin-v0.2.2...nx-plugin-v0.2.3) (2026-11-17)
+
+
+### Bug Fixes
+
+* **nx-plugin:** close the plugin ref tag in the preset template ([#30](https://github.com/yassmin-poc/tooling/issues/30)) ([d5d9888](https://github.com/yassmin-poc/tooling/commit/d5d988836a4e6024a7c78f96e940e7b00c905c7e))
+
 ## [0.2.2](https://github.com/yassmin-poc/tooling/compare/nx-plugin-v0.2.1...nx-plugin-v0.2.2) (2026-11-17)
 
 
