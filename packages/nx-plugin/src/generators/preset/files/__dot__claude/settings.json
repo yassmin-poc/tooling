@@ -1,7 +1,7 @@
 {
   "extraKnownMarketplaces": {
     "yassmin-poc-tools": {
-      "source": { "source": "github", "repo": "yassmin-poc/tooling", "ref": "<%= pluginRef" }
+      "source": { "source": "github", "repo": "yassmin-poc/tooling", "ref": "<%= pluginRef %>" }   
     }
   },
   "enabledPlugins": { "poc-tools@yassmin-poc-tools": true },
