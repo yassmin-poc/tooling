@@ -6,7 +6,6 @@
     "packages/nx-plugin": { "component": "nx-plugin" },
     "plugins/poc-tools": { "component": "poc-tools", "release-type": "simple" },
     ".github/workflows": {
-      "component": "ci-base",
       "release-type": "simple",
       "include-component-in-tag": false,
       "version-file": "/ci-base/version.txt",
