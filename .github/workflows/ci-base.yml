@@ -19,7 +19,8 @@ jobs:
       - run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
-      - run: npx --yes "@yassmin-poc/standards@${STANDARDS_VERSION}" .
+      - name: Check the product against the shared standards
+        run: npx --yes "@yassmin-poc/standards@${STANDARDS_VERSION}" .
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
   commitlint:
