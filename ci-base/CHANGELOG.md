@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/yassmin-poc/tooling/compare/v0.2.1...v0.2.2) (2026-11-18)
+
+
+### Bug Fixes
+
+* **ci-base:** name the standards-check step ([#32](https://github.com/yassmin-poc/tooling/issues/32)) ([b264a49](https://github.com/yassmin-poc/tooling/commit/b264a492d86301d3d42729d85bc5632642b95a0b))
+
 ## [0.2.1](https://github.com/yassmin-poc/tooling/compare/v0.2.0...v0.2.1) (2026-11-17)
 
 
